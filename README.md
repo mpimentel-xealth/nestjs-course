@@ -32,14 +32,17 @@
 $ npm install
 ```
 
+## Starting container dependencies
+
+```bash
+./dependencies.sh
+```
+
 ## Running the app
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
+# dev mode
+$ ./devserver.sh
 
 # production mode
 $ npm run start:prod
