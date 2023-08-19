@@ -48,6 +48,10 @@ $ ./devserver.sh
 $ npm run start:prod
 ```
 
+## Hint
+
+If you see `Unable to connect to the database. Retrying (1)...` at startup, double check you don't have any other processes like Postgres on the host taking up port `5432`
+
 ## Test
 
 ```bash
