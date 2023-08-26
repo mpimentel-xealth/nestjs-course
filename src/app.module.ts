@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CoffeesModule } from './coffees/coffees.module';
@@ -7,16 +8,23 @@ import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     CoffeesModule,
-    TypeOrmModule.forRoot({
-      type: 'postgres', // type of our database
-      host: '127.0.0.1', // database host
-      port: 5432, // database host
-      username: 'postgres', // username
-      password: 'pass123', // user password
-      database: 'postgres', // name of our database,
-      autoLoadEntities: true, // models will be loaded automatically
-      synchronize: true, // your entities will be synced with the database(recommended: disable in prod)
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => {
+        return {
+          type: 'postgres',
+          host: configService.get<string>('DATABASE_HOST'),
+          port: +configService.get<number>('DATABASE_PORT'),
+          username: configService.get<string>('DATABASE_USER'),
+          password: configService.get<string>('DATABASE_PASSWORD'),
+          database: configService.get<string>('DATABASE_NAME'),
+          autoLoadEntities: true,
+          synchronize: true,
+        };
+      },
+      inject: [ConfigService],
     }),
     DatabaseModule,
   ],

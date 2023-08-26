@@ -7,10 +7,11 @@ import { Flavor } from './entities/flavor.entity';
 import { Event } from '../events/entities/event.entity';
 import { COFFEE_BRANDS } from './coffees.constants';
 import { LoggerService } from './logger.service';
+import { ConfigService } from '@nestjs/config';
 
-class ConfigService {}
-class DevelopmentConfigService {}
-class ProductionConfigService {}
+// class ConfigService {}
+// class DevelopmentConfigService {}
+// class ProductionConfigService {}
 
 @Injectable()
 export class CoffeeBrandsFactory {
@@ -23,6 +24,7 @@ export class CoffeeBrandsFactory {
   imports: [TypeOrmModule.forFeature([Coffee, Flavor, Event])],
   controllers: [CoffeesController],
   providers: [
+    ConfigService,
     CoffeesService,
     {
       provide: LoggerService,
@@ -40,24 +42,25 @@ export class CoffeeBrandsFactory {
     CoffeeBrandsFactory,
     {
       provide: COFFEE_BRANDS,
-      useFactory: (brandsFactory: CoffeeBrandsFactory) => brandsFactory.create(),
+      useFactory: (brandsFactory: CoffeeBrandsFactory) =>
+        brandsFactory.create(),
       inject: [CoffeeBrandsFactory],
     },
     {
       provide: COFFEE_BRANDS,
       useFactory: () => {
-        console.log('coffee_brands factory 1');
+        // console.log('coffee_brands factory 1');
         return ['buddy brew', 'nescafe'];
       },
       scope: Scope.DEFAULT,
     },
-    {
-      provide: ConfigService,
-      useClass:
-        process.env.NODE_ENV === 'development'
-          ? DevelopmentConfigService
-          : ProductionConfigService,
-    },
+    // {
+    //   provide: ConfigService,
+    //   useClass:
+    //     process.env.NODE_ENV === 'development'
+    //       ? DevelopmentConfigService
+    //       : ProductionConfigService,
+    // },
   ],
   exports: [CoffeesService],
 })
