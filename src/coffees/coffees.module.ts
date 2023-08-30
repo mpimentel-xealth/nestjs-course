@@ -1,4 +1,4 @@
-import { Inject, Injectable, Module, Scope } from '@nestjs/common';
+import { Injectable, Module, Scope } from '@nestjs/common';
 import { CoffeesController } from './coffees.controller';
 import { CoffeesService } from './coffees.service';
 import { TypeOrmModule } from '@nestjs/typeorm';

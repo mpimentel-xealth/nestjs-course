@@ -1,4 +1,4 @@
-import { Inject, Injectable, NotFoundException, Scope } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Coffee } from './entities/coffee.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
@@ -25,10 +25,7 @@ export class CoffeesService {
   ) {
     // console.log(`coffeeBrands ${coffeeBrands}`)
     console.log('CoffeesService instantiated');
-    const databaseHost = this.configService.get<string>(
-      'DATABASE_HOST',
-      '127.0.0.1',
-    );
+    const databaseHost = this.configService.get('database.host', '127.0.0.1');
     console.log(`databaseHost: ${databaseHost}`);
   }
 
