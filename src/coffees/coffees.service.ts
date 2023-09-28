@@ -26,7 +26,7 @@ export class CoffeesService {
     private readonly coffeesConfiguration: ConfigType<typeof coffeesConfig>,
   ) {
     // console.log(`coffeeBrands ${coffeeBrands}`)
-    console.log(`coffeesConfig: ${this.coffeesConfiguration.foo}`);
+    // console.log(`coffeesConfig: ${this.coffeesConfiguration.foo}`);
   }
 
   async findAll(paginationQuery: PaginationQueryDto) {

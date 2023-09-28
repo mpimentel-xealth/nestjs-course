@@ -21,6 +21,7 @@
     "nest": "nest"
   },
   "dependencies": {
+    "@golevelup/ts-jest": "^0.4.0",
     "@hapi/joi": "^17.1.1",
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.0.0",
