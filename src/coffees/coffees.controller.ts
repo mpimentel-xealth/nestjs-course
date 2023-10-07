@@ -14,12 +14,12 @@ import {
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee-dto';
-import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
+import { PaginationQueryDto } from '../../src/common/dto/pagination-query.dto';
 import { LoggerService } from './logger.service';
 import { REQUEST } from '@nestjs/core';
-import { Public } from 'src/common/decorators/public.decorator';
-import { ParseIntPipe } from 'src/common/pipes/parse-int/parse-int.pipe';
-import { Protocol } from 'src/common/decorators/protocol.decorator';
+import { Public } from '../../src/common/decorators/public.decorator';
+import { ParseIntPipe } from '../../src/common/pipes/parse-int/parse-int.pipe';
+import { Protocol } from '../../src/common/decorators/protocol.decorator';
 import { ApiForbiddenResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('coffees')
