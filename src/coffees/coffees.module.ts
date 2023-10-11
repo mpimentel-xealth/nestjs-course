@@ -5,7 +5,7 @@ import { TypeOrmModule, getRepositoryToken } from '@nestjs/typeorm';
 import { Coffee } from './entities/coffee.entity';
 import { Flavor } from './entities/flavor.entity';
 import { Event } from '../events/entities/event.entity';
-// import { COFFEE_BRANDS } from './coffees.constants';
+import { COFFEE_BRANDS } from './coffees.constants';
 import { LoggerService } from './logger.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import coffeesConfig from './config/coffees.config';
@@ -36,14 +36,14 @@ import coffeesConfig from './config/coffees.config';
       useClass: LoggerService,
       scope: Scope.TRANSIENT,
     },
-    // {
-    //   provide: COFFEE_BRANDS,
-    //   useFactory: async () => {
-    //     // const coffeeBrands = await connection.query('SELECT * ...');
-    //     const coffeeBrands = await Promise.resolve(['buddy brew', 'nescafe']);
-    //     return coffeeBrands;
-    //   },
-    // },
+    {
+      provide: COFFEE_BRANDS,
+      useFactory: async () => {
+        // const coffeeBrands = await connection.query('SELECT * ...');
+        const coffeeBrands = await Promise.resolve(['buddy brew', 'nescafe']);
+        return coffeeBrands;
+      },
+    },
     // CoffeeBrandsFactory,
     // {
     //   provide: COFFEE_BRANDS,
