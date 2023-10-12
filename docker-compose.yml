@@ -8,6 +8,14 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: pass123
+  test-db:
+    image:  postgres
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pass123
   pgadmin:
     container_name: pgadmin4_container
     image: dpage/pgadmin4
