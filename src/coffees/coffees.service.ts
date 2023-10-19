@@ -42,8 +42,7 @@ export class CoffeesService {
     return existingCoffee;
   }
 
-  async remove(id: string) {
-    const coffee = await this.findOne(id);
-    return coffee.;
+  remove(id: string) {
+    return this.coffeeModel.findOneAndDelete({ _id: id }).exec();
   }
 }
